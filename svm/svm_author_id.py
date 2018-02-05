@@ -10,6 +10,8 @@
     
 import sys
 from time import time
+from sklearn.metrics import accuracy_score
+from sklearn.svm import SVC
 sys.path.append("../tools/")
 from email_preprocess import preprocess
 
@@ -19,7 +21,10 @@ from email_preprocess import preprocess
 ### labels_train and labels_test are the corresponding item labels
 features_train, features_test, labels_train, labels_test = preprocess()
 
-
+clf = SVC(kernel = 'linear')
+clf.fit(features_train,labels_train)
+z = clf.predict(features_test)
+print accuracy_score(labels_test,z)
 
 
 #########################################################
